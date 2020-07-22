@@ -21,7 +21,7 @@ assert(length(heights) == length(track_length));
 
 
 % Constants
-mass = 0.0097;  % unit: kg
+mass = 0.00097;  % unit: kg
 gravity = 9.81;  % unit: m/s^2
 
 % lists
@@ -37,14 +37,21 @@ kinetic_energies(1) = 0;
 velocities(1) = 0;
 
 % all other points
-fprintf("Total energy, kinetic energy, and velocity\n");
-fprintf("0: %f\t%.6f\t%.6f\t%.6f\n", total_energies(1), 0, 0, 0.25216605);
+fprintf("Total energieskinetic energy\n");
+fprintf("0: %f\t%.6f\t%.6f\n", total_energies(1), 0, 0);
 for i = 2:length(total_energies)
-    total_energies(i) = total_energies(1) - 0.0007 * track_length(i);
-    kinetic_energies(i) = total_energies(i) - (mass * gravity * heights(i));
-    potential_energies(i) = mass * gravity * heights(i);
-    velocities(i) = sqrt((10 * kinetic_energies(i)) / (7 * mass));
-    fprintf("%d: %f\t%f\t%f\t%f\n", i - 1, total_energies(i), kinetic_energies(i), velocities(i), potential_energies(i));
+    total_energy = total_energies(i - 1) - (0.0007 * track_length(i));
+    kinetic_energy = total_energy - (mass * gravity * heights(i));
+    velocity = sqrt((10 * kinetic_energy) / (7 * kinetic_energy));
+    % energy cannot be less than 0
+    if total_energy < 0
+        total_energy = 0;
+    end
+    if kinetic_energy < 0
+        kinetic_energy = 0;
+    end
+    total_energies(i) = total_energy;
+    kinetic_energies(i) = kinetic_energy;
+    velocities(i) = velocity;
+    fprintf("%d: %f\t%f\t%f\n", i - 1, total_energies(i), kinetic_energies(i), velocities(i));
 end
-
-% TODO plot
