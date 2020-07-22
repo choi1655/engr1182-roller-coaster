@@ -23,3 +23,21 @@ assert(length(heights) == length(track_length));
 % Constants
 mass = 0.00097;  % unit: kg
 gravity = 9.81;  % unit: m/s^2
+
+total_energy = zeros(1, 12);
+potential_energy = zeros(1, 12);
+% At point 0
+total_energy(1) = mass * gravity * heights(1);
+potential_energy(1) = total_energy(1);
+% all other points
+fprintf("Total energies\n");
+fprintf("0: %f\n", total_energy(1));
+for i = 2:length(total_energy)
+    energy = total_energy(i - 1) - (0.0007 * track_length(i));
+    % energy cannot be less than 0
+    if energy < 0
+        energy = 0;
+    end
+    total_energy(i) = energy;
+    fprintf("%d: %f\n", i - 1, total_energy(i));
+end
