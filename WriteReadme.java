@@ -68,6 +68,7 @@ public class WriteReadme {
 	public static void main(String[] args) throws Exception {
 		File myFile = new File("README.md");
 		PrintWriter pw = new PrintWriter(myFile);
+		writeHeader(pw);
 		ask(pw);
 		printFooter(pw);
 		pw.close();
