@@ -8,7 +8,7 @@ import java.io.File;
 
 public class WriteReadme {
 
-	private static void writeHeader(PrintWriter pw) {
+	private static void writeHeader(PrintWriter pw) throws Exception {
 		pw.println("# engr1182-roller-coaster");
 		pw.println("CSCC ENGR1182 SU20 Roller Coaster Project Calculations");
 		pw.println("\n## Made By");
@@ -17,11 +17,36 @@ public class WriteReadme {
 		pw.println("* Group 1");
 	}
 
-	private static void takeNamesAndPrint(PrintWriter pw) {
+	private static void usePreviousList(PrintWriter pw, Scanner keyboard) throws Exception {
+		File nameFile = new File("names.txt");
+		if (!nameFile.exists()) {
+			System.out.println("Name file does not exist");
+			takeNamesAndPrint(pw, keyboard);
+		} else {
+			Scanner readFile = new Scanner(nameFile);
+			while (readFile.hasNextLine()) {
+				pw.println(String.format("\t- %s", readFile.nextLine()));
+			}
+		}
+	}
+
+	private static void ask(PrintWriter pw) throws Exception {
 		Scanner keyboard = new Scanner(System.in);
+		System.out.print("Use previous name list? > ");
+		String input = keyboard.nextLine();
+		if (input.equalsIgnoreCase("Y")) {
+			usePreviousList(pw, keyboard);
+		} else {
+			takeNamesAndPrint(pw, keyboard);
+		}
+	}
+
+	private static void takeNamesAndPrint(PrintWriter pw, Scanner keyboard) throws Exception {
 		System.out.println("Type names (press Enter to finish):");
 		String input = keyboard.nextLine();
 		List<String> names = new ArrayList<>();
+		File namesFile = new File("names.txt");
+		PrintWriter nameWriter = new PrintWriter(namesFile);
 		while (!input.isEmpty()) {
 			names.add(input);
 			input = keyboard.nextLine();
@@ -29,8 +54,10 @@ public class WriteReadme {
 		keyboard.close();
 		Collections.sort(names);
 		for (String name : names) {
+			nameWriter.println(name);
 			pw.println(String.format("\t- %s", name));
 		}
+		nameWriter.close();
 	}
 
 	private static void printFooter(PrintWriter pw) {
@@ -38,13 +65,11 @@ public class WriteReadme {
 		pw.println("Mr. Massood Rahimi, Columbus State Community College");
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		File myFile = new File("README.md");
 		PrintWriter pw = new PrintWriter(myFile);
-		writeHeader(pw);
-		takeNamesAndPrint(pw);
+		ask(pw);
 		printFooter(pw);
 		pw.close();
 	}
 }
-
