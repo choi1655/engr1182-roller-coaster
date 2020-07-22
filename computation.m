@@ -37,7 +37,7 @@ kinetic_energies(1) = 0;
 velocities(1) = 0;
 
 % all other points
-fprintf("Total energy, kinetic energy, and velocity\n");
+fprintf("Total energy, kinetic energy, and velocity and potential energy\n");
 fprintf("0: %f\t%.6f\t%.6f\t%.6f\n", total_energies(1), 0, 0, 0.25216605);
 for i = 2:length(total_energies)
     total_energies(i) = total_energies(1) - 0.0007 * track_length(i);
@@ -47,4 +47,21 @@ for i = 2:length(total_energies)
     fprintf("%d: %f\t%f\t%f\t%f\n", i - 1, total_energies(i), kinetic_energies(i), velocities(i), potential_energies(i));
 end
 
-% TODO plot
+% plot track_length vs. total_energy, kinetic_energy, potential_energy
+figure(1)
+hold on
+plot(track_length, total_energies, track_length, kinetic_energies, track_length, potential_energies);
+xlabel("Track Length (m)");
+ylabel("Energies (J)");
+title("Track Length vs. Total, Kinetic, and Potential Energies");
+legend("Total Energy", "Kinetic Energy", "Potential Energy");
+hold off
+
+% plot track_length vs. velocities
+figure(2)
+hold on
+plot(track_length, velocities);
+xlabel("Track Length (m)");
+ylabel("Velocities (m/s)");
+title("Track Length vs. Velocities");
+hold off
