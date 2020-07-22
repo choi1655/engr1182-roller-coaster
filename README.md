@@ -18,5 +18,8 @@ CSCC ENGR1182 SU20 Roller Coaster Project Calculations
 	- Toni Chinchar
 	- Yejin Jang
 
+## Output
+[PDF Output](computation.pdf)
+
 ## Instructor
 Mr. Massood Rahimi, Columbus State Community College
