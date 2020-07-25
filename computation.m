@@ -25,10 +25,11 @@ mass = 0.0097;  % unit: kg
 gravity = 9.81;  % unit: m/s^2
 
 % lists
-total_energies = zeros(1, 12);
-potential_energies = zeros(1, 12);
-kinetic_energies = zeros(1, 12);
-velocities = zeros(1, 12);
+list_size = length(heights);
+total_energies = zeros(1, list_size);
+potential_energies = zeros(1, list_size);
+kinetic_energies = zeros(1, list_size);
+velocities = zeros(1, list_size);
 
 % At point 0
 total_energies(1) = mass * gravity * heights(1);
@@ -38,7 +39,7 @@ velocities(1) = 0;
 
 % all other points
 fprintf("Total energy, kinetic energy, and velocity and potential energy\n");
-fprintf("0: %f\t%.6f\t%.6f\t%.6f\n", total_energies(1), 0, 0, 0.25216605);
+fprintf("0: %f\t%.6f\t%.6f\t%.6f\n", total_energies(1), 0, 0, total_energies(1));
 for i = 2:length(total_energies)
     total_energies(i) = total_energies(1) - 0.0007 * track_length(i);
     kinetic_energies(i) = total_energies(i) - (mass * gravity * heights(i));
