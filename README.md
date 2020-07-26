@@ -21,5 +21,9 @@ CSCC ENGR1182 SU20 Roller Coaster Project Calculations
 ## Output
 [PDF Output](computation.pdf)
 
+## Plots
+![](./plots/plot1.png)
+![](./plots/plot2.png)
+
 ## Instructor
 Mr. Massood Rahimi, Columbus State Community College

@@ -63,6 +63,9 @@ public class WriteReadme {
 	private static void printFooter(PrintWriter pw) {
 		pw.println("\n## Output");
 		pw.println("[PDF Output](computation.pdf)");
+		pw.println("\n## Plots");
+		pw.println("![](./plots/plot1.png)");
+		pw.println("![](./plots/plot2.png)");
 		pw.println("\n## Instructor");
 		pw.println("Mr. Massood Rahimi, Columbus State Community College");
 	}
