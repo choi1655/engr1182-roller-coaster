@@ -8,13 +8,11 @@ CSCC ENGR1182 SU20 Roller Coaster Project Calculations
 * Group 1
 	- Aliyah Osman
 	- Audrey Milligan
-	- Esmail Mohamef
 	- Evan Koknat
 	- Gavin Kallas
 	- John Choi
 	- Liam Dring
 	- Mohammed A
-	- Sagar Mishra
 	- Toni Chinchar
 	- Yejin Jang
 
